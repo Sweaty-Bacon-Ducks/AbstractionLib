@@ -3,7 +3,7 @@ using QuestSystem.Core;
 
 namespace QuestSystem.Tests
 {
-    [TestFixture]
+    [TestFixture, Parallelizable(ParallelScope.Fixtures)]
     public class QuestTests
     {
         [Test, Parallelizable(ParallelScope.Self)]
