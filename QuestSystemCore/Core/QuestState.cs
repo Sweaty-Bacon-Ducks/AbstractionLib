@@ -1,4 +1,4 @@
-﻿namespace QuestSystem.Core
+﻿namespace AbstractionLib.QuestSystem
 {
     public enum QuestState
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QuestSystem.Core
+namespace AbstractionLib.QuestSystem
 {
     public class Quest : IQuest
     {

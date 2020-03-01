@@ -17,7 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Logging\Logging.csproj" />
     <ProjectReference Include="..\QuestSystemCore\QuestSystem.csproj" />
+    <ProjectReference Include="..\Serialization\Serialization.csproj" />
   </ItemGroup>
 
 </Project>

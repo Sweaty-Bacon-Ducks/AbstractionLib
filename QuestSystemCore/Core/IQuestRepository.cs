@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace QuestSystem.Core
+namespace AbstractionLib.QuestSystem
 {
     public interface IQuestRepository
     {

@@ -1,7 +1,9 @@
-namespace QuestSystem.Core
+using System.Collections.Generic;
+
+namespace AbstractionLib.QuestSystem
 {
     public interface IQuestFactory
     {
-        IQuest Create();
+        ICollection<IQuest> Create(ICollection<IQuestTemplate> templates);
     }
 }

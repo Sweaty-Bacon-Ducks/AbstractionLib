@@ -1,7 +1,7 @@
 using NUnit.Framework;
-using QuestSystem.Core;
+using AbstractionLib.QuestSystem;
 
-namespace QuestSystem.Tests
+namespace AbstractionLib.Tests
 {
     [TestFixture, Parallelizable(ParallelScope.Fixtures)]
     public class QuestTests

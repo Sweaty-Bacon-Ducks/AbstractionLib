@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestSystem", "QuestSystemCore\QuestSystem.csproj", "{78D55013-3C6D-436E-A0EC-EB76E00BA3F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{D5F85E19-433F-4D32-BC26-85736554A266}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{D5F85E19-433F-4D32-BC26-85736554A266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{9CFD4637-6DF9-4E52-A040-B497C089D25E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization", "Serialization\Serialization.csproj", "{D340D19C-8821-495A-9512-444B69DE8819}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{D5F85E19-433F-4D32-BC26-85736554A266}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5F85E19-433F-4D32-BC26-85736554A266}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5F85E19-433F-4D32-BC26-85736554A266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CFD4637-6DF9-4E52-A040-B497C089D25E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CFD4637-6DF9-4E52-A040-B497C089D25E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CFD4637-6DF9-4E52-A040-B497C089D25E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CFD4637-6DF9-4E52-A040-B497C089D25E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D340D19C-8821-495A-9512-444B69DE8819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D340D19C-8821-495A-9512-444B69DE8819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D340D19C-8821-495A-9512-444B69DE8819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D340D19C-8821-495A-9512-444B69DE8819}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

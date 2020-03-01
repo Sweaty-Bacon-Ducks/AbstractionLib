@@ -1,4 +1,4 @@
-namespace QuestSystem.Logging
+namespace AbstractionLib.Logging
 {
     public enum LogSeverity
     {

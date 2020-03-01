@@ -1,7 +1,7 @@
 using NUnit.Framework;
-using QuestSystem.Core;
+using AbstractionLib.QuestSystem;
 
-namespace QuestSystem.Tests
+namespace AbstractionLib.Tests
 {
     [TestFixture, Parallelizable(ParallelScope.Fixtures)]
     public class QuestRepositoryTests
@@ -44,7 +44,7 @@ namespace QuestSystem.Tests
                        repo.FinishedQuests.Contains(q);
             Assert.True(cond);
         }
-        
+
         [Test, Parallelizable(ParallelScope.Self)]
         public void AddFailedQuestTest()
         {
@@ -56,6 +56,20 @@ namespace QuestSystem.Tests
                        repo.FailedQuests.Contains(q) &&
                        !repo.FinishedQuests.Contains(q);
             Assert.True(cond);
+        }
+
+        [Test, Parallelizable(ParallelScope.Self)]
+        public void ClearQuestsTest()
+        {
+            var repo = new ListBasedQuestRepository();
+            repo.AddQuest(new Quest());
+            repo.AddQuest(new Quest());
+            repo.AddQuest(new Quest());
+            repo.Reset();
+            Assert.True(repo.ActiveQuests.Count +
+                repo.AvailableQuests.Count +
+                repo.FailedQuests.Count +
+                repo.FinishedQuests.Count == 0);
         }
     }
 }

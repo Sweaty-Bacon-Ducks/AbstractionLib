@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using QuestSystem.Logging;
+using AbstractionLib.Logging;
 
-namespace QuestSystem.Core
+namespace AbstractionLib.QuestSystem
 {
     public class LogQuestRepositoryEventsDecorator : IQuestRepository, IDecorator<IQuestRepository>
     {
@@ -12,9 +12,9 @@ namespace QuestSystem.Core
         public LogQuestRepositoryEventsDecorator(IQuestRepository decoratingTarget, ILogger logger)
         {
             _decoratingTarget = decoratingTarget;
-            _logger = _logger;
+            _logger = logger;
         }
-        
+
         public ReadOnlyCollection<IQuest> AvailableQuests => _decoratingTarget.AvailableQuests;
 
         public ReadOnlyCollection<IQuest> ActiveQuests => _decoratingTarget.ActiveQuests;
