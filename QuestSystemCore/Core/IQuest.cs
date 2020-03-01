@@ -1,7 +1,8 @@
 ﻿namespace QuestSystem.Core
 {
-    interface IQuest
+    public interface IQuest
     {
+        QuestState QuestState { get; }
         bool IsActive { get; }
 
         bool IsAvailable { get; }

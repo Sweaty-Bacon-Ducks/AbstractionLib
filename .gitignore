@@ -16,8 +16,11 @@ x64/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
 
-# Visul Studio temporary files
+# Visual Studio temporary files
 .vs/
+
+# Rider temporary files
+.idea/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

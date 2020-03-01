@@ -1,29 +1,47 @@
 using NUnit.Framework;
 using QuestSystem.Core;
+
 namespace QuestSystem.Tests
 {
     [TestFixture]
-    public class QuestTest
+    public class QuestTests
     {
-        [Test]
-        public void TestIsAvailable()
+        [Test, Parallelizable(ParallelScope.Self)]
+        public void TestNewQuestState()
         {
             Assert.IsTrue(new Quest().IsAvailable);
         }
-        [Test]
+
+        [Test, Parallelizable(ParallelScope.Self)]
+        public void TestIsAvailable()
+        {
+            var q = new Quest();
+            q.MakeAvailable();
+            Assert.IsTrue(q.IsAvailable);
+        }
+
+        [Test, Parallelizable(ParallelScope.Self)]
         public void TestIsActive()
         {
-            Assert.IsTrue(new Quest().IsActive);
+            var q = new Quest();
+            q.MakeActive();
+            Assert.IsTrue(q.IsActive);
         }
-        [Test]
+
+        [Test, Parallelizable(ParallelScope.Self)]
         public void TestIsFinished()
         {
-            Assert.IsTrue(new Quest().IsFinished);
+            var q = new Quest();
+            q.MakeFinished();
+            Assert.IsTrue(q.IsFinished);
         }
-        [Test]
+
+        [Test, Parallelizable(ParallelScope.Self)]
         public void TestHasFailed()
         {
-            Assert.IsTrue(new Quest().HasFailed);
+            var q = new Quest();
+            q.MakeFailed();
+            Assert.IsTrue(q.HasFailed);
         }
     }
 }
