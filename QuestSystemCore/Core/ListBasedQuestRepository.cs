@@ -7,63 +7,41 @@ namespace QuestSystem.Core
 {
     public class ListBasedQuestRepository : IQuestRepository
     {
-        private List<IQuest> availableQuests;
-        private List<IQuest> activeQuests;
-        private List<IQuest> finishedQuests;
-        private List<IQuest> failedQuests;
+        private readonly List<IQuest> quests;
 
         public ListBasedQuestRepository()
         {
-            availableQuests = new List<IQuest>();
-            activeQuests = new List<IQuest>();
-            finishedQuests = new List<IQuest>();
-            failedQuests = new List<IQuest>();
+            quests = new List<IQuest>();
         }
 
-        public ReadOnlyCollection<IQuest> AvailableQuests => availableQuests.AsReadOnly();
-        public ReadOnlyCollection<IQuest> ActiveQuests => activeQuests.AsReadOnly();
-        public ReadOnlyCollection<IQuest> FinishedQuests => finishedQuests.AsReadOnly();
-        public ReadOnlyCollection<IQuest> FailedQuests => failedQuests.AsReadOnly();
+        public ReadOnlyCollection<IQuest> AvailableQuests =>
+            quests.Where(q => q.IsAvailable)
+                .ToList()
+                .AsReadOnly();
+
+        public ReadOnlyCollection<IQuest> ActiveQuests =>
+            quests.Where(q => q.IsActive)
+                .ToList()
+                .AsReadOnly();
+
+        public ReadOnlyCollection<IQuest> FinishedQuests =>
+            quests.Where(q => q.IsFinished)
+                .ToList()
+                .AsReadOnly();
+
+        public ReadOnlyCollection<IQuest> FailedQuests =>
+            quests.Where(q => q.HasFailed)
+                .ToList()
+                .AsReadOnly();
 
         public void AddQuest(IQuest incomingQuest)
         {
-            switch (incomingQuest.QuestState)
-            {
-                case QuestState.Active:
-                    HandleIncomingActiveQuest(incomingQuest);
-                    break;
-                case QuestState.Available:
-                    HandleIncomingAvailableQuest(incomingQuest);
-                    break;
-                case QuestState.Finished:
-                    HandleIncomingFinishedQuest(incomingQuest);
-                    break;
-                case QuestState.Failed:
-                    HandleIncomingFailedQuest(incomingQuest);
-                    break;
-                default:
-                    return;
-            }
+            quests.Add(incomingQuest);
         }
 
-        private void HandleIncomingActiveQuest(IQuest incomingQuest)
+        public void Reset()
         {
-            activeQuests.Add(incomingQuest);
-        }
-
-        private void HandleIncomingAvailableQuest(IQuest incomingQuest)
-        {
-            availableQuests.Add(incomingQuest);
-        }
-
-        private void HandleIncomingFinishedQuest(IQuest incomingQuest)
-        {
-            finishedQuests.Add(incomingQuest);
-        }
-
-        private void HandleIncomingFailedQuest(IQuest incomingQuest)
-        {
-            failedQuests.Add(incomingQuest);
+            quests.Clear();
         }
     }
 }

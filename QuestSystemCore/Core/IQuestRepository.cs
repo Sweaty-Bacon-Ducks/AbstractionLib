@@ -9,7 +9,7 @@ namespace QuestSystem.Core
         ReadOnlyCollection<IQuest> ActiveQuests { get; }
         ReadOnlyCollection<IQuest> FinishedQuests { get; }
         ReadOnlyCollection<IQuest> FailedQuests { get; }
-
         void AddQuest(IQuest incomingQuest);
+        void Reset();
     }
 }
