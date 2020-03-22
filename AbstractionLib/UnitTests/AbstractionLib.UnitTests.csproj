@@ -1,9 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <ApplicationIcon />
+
+    <OutputType>Exe</OutputType>
+
+    <StartupObject />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,9 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Logging\Logging.csproj" />
-    <ProjectReference Include="..\QuestSystem\QuestSystem.csproj" />
-    <ProjectReference Include="..\Serialization\Serialization.csproj" />
+    <ProjectReference Include="..\Logging\AbstractionLib.Logging.csproj" />
+    <ProjectReference Include="..\QuestSystem\AbstractionLib.QuestSystem.csproj" />
+    <ProjectReference Include="..\Serialization\AbstractionLib.Serialization.csproj" />
   </ItemGroup>
 
 </Project>

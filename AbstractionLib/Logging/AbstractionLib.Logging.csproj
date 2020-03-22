@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>QuestSystem</PackageId>
+    <PackageId>AbstractionLib.Logging</PackageId>
     <Version>0.1.0</Version>
     <Authors></Authors>
     <Company>Sweaty Bacon Ducks</Company>
@@ -11,23 +11,17 @@
     <RepositoryUrl>https://github.com/Sweaty-Bacon-Ducks/AbstractionLib</RepositoryUrl>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>x64</PlatformTarget>
-    <DefineConstants />
-    <Optimize>false</Optimize>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DefineConstants />
+  </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Logging\Logging.csproj" />
-    <ProjectReference Include="..\Serialization\Serialization.csproj" />
+    <PackageReference Include="NLog" Version="4.6.8" />
   </ItemGroup>
 
 </Project>

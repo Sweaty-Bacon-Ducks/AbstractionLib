@@ -115,5 +115,5 @@ jobs:
         run: | 
           for f in packages/*.nupkg
           do
-            dotnet nuget push $f --source https://www.nuget.org/api/v2/ --api-key ${{ secrets.NUGET_DEPLOY_KEY }} --skip-duplicate
+            dotnet nuget push $f --source https://www.nuget.org --api-key ${{ secrets.NUGET_DEPLOY_KEY }} --skip-duplicate
           done 
