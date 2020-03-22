@@ -1,0 +1,94 @@
+name: .NET Core
+
+on:
+  push:
+    tags: 
+      - '*'
+    branches:
+    - master
+  pull_request:
+    branches: 
+    - master
+
+jobs:
+  build:
+    runs-on: [ubuntu-18.04]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get package version from release
+      run: echo ::set-env name=RELEASE_VERSION::$( echo ${GITHUB_REF:10} | grep -P '^\d+\.\d+\.\d+$' )
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+    - name: Build solution
+      run: |
+        if [ $RELEASE_VERSION ]
+        then
+          echo "Building release $RELEASE_VERSION"
+          dotnet build -c Release /p:Version=$RELEASE_VERSION AbstractionLib/AbstractionLib.sln 
+        else
+          echo "Building branch ${GITHUB_REF:10}"
+          dotnet build -c Release AbstractionLib/AbstractionLib.sln
+        fi
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: build
+        path: ./
+  test:
+    runs-on: [ubuntu-18.04]
+    needs: [build]
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v1
+      with:
+         name: build
+    - name: Test all projects
+      run: dotnet test -c Release build/AbstractionLib/AbstractionLib.sln
+  pack:
+    runs-on: [ubuntu-18.04]
+    needs: [build, test]
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: build
+      - name: Get package version from release
+        run: echo ::set-env name=RELEASE_VERSION::$( echo ${GITHUB_REF:10} | grep -P '^\d+\.\d+\.\d+$' )    
+      - name: Pack build result to nuget packages
+        if: ${{ env.RELEASE_VERSION }} 
+        run: dotnet pack -c Release -o Packages /p:Version=$RELEASE_VERSION build/AbstractionLib/AbstractionLib.sln 
+      - name: Upload package artifacts
+        if: ${{ env.RELEASE_VERSION }}
+        uses: actions/upload-artifact@v1
+        with:
+          name: packages
+          path: Packages
+  deploy_to_github_packages:
+    runs-on: [ubuntu-18.04]
+    needs: [build, test, pack]
+    steps:
+      - name: Get package version from release
+        run: echo ::set-env name=RELEASE_VERSION::$( echo ${GITHUB_REF:10} | grep -P '^\d+\.\d+\.\d+$' )   
+      - name: Download build artifacts
+        if: ${{ env.RELEASE_VERSION }} 
+        uses: actions/download-artifact@v1
+        with:
+          name: packages   
+      - name: Setup .NET Core for deploy
+        if: ${{ env.RELEASE_VERSION }} 
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.100
+          source-url: https://nuget.pkg.github.com/sweaty-bacon-ducks/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}  
+      - name: Deploy package to github packages
+        if: ${{ env.RELEASE_VERSION }} 
+        run: | 
+          for f in packages/*.nupkg
+          do
+            dotnet nuget push $f
+          done 
+        

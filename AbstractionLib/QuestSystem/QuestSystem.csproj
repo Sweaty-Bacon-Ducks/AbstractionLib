@@ -8,6 +8,7 @@
     <Authors></Authors>
     <Company>Sweaty Bacon Ducks</Company>
     <Product>AbstractionLib</Product>
+    <RepositoryUrl>https://github.com/Sweaty-Bacon-Ducks/AbstractionLib</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
