@@ -92,3 +92,29 @@ jobs:
             dotnet nuget push $f
           done 
         
+  deploy_to_nuget:
+    runs-on: [ubuntu-18.04]
+    needs: [build, test, pack]
+    steps:
+      - name: Get package version from release
+        run: echo ::set-env name=RELEASE_VERSION::$( echo ${GITHUB_REF:10} | grep -P '^\d+\.\d+\.\d+$' )   
+      - name: Download build artifacts
+        if: ${{ env.RELEASE_VERSION }} 
+        uses: actions/download-artifact@v1
+        with:
+          name: packages   
+      - name: Setup .NET Core for deploy
+        if: ${{ env.RELEASE_VERSION }} 
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.100
+          source-url: https://www.nuget.org/api/v2/
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}  
+      - name: Deploy package to nuget registry
+        if: ${{ env.RELEASE_VERSION }} 
+        run: | 
+          for f in packages/*.nupkg
+          do
+            dotnet nuget push $f --source https://www.nuget.org/api/v2/ --api-key ${{ secrets.NUGET_DEPLOY_KEY }}
+          done 
