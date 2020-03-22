@@ -89,7 +89,7 @@ jobs:
         run: | 
           for f in packages/*.nupkg
           do
-            dotnet nuget push $f
+            dotnet nuget push $f --skip-duplicate
           done 
         
   deploy_to_nuget:
@@ -108,7 +108,6 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.100
-          source-url: https://www.nuget.org/api/v2/
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}  
       - name: Deploy package to nuget registry
@@ -116,5 +115,5 @@ jobs:
         run: | 
           for f in packages/*.nupkg
           do
-            dotnet nuget push $f --source https://www.nuget.org/api/v2/ --api-key ${{ secrets.NUGET_DEPLOY_KEY }}
+            dotnet nuget push $f --source https://www.nuget.org/api/v2/ --api-key ${{ secrets.NUGET_DEPLOY_KEY }} --skip-duplicate
           done 
