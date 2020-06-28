@@ -38,6 +38,11 @@ namespace AbstractionLib.QuestSystem
             quests.Add(incomingQuest);
         }
 
+        public void AddManyQuests(IEnumerable<IQuest> incomingQuests)
+        {
+            quests.AddRange(incomingQuests);
+        }
+
         public void Reset()
         {
             quests.Clear();

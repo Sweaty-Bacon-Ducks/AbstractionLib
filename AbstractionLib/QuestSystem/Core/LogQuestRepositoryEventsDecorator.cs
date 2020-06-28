@@ -6,22 +6,22 @@ namespace AbstractionLib.QuestSystem
 {
     public class LogQuestRepositoryEventsDecorator : IQuestRepository, IDecorator<IQuestRepository>
     {
-        private IQuestRepository _decoratingTarget;
-        private ILogger _logger;
+        private IQuestRepository decoratingTarget;
+        private ILogger logger;
 
         public LogQuestRepositoryEventsDecorator(IQuestRepository decoratingTarget, ILogger logger)
         {
-            _decoratingTarget = decoratingTarget;
-            _logger = logger;
+            this.decoratingTarget = decoratingTarget;
+            this.logger = logger;
         }
 
-        public ReadOnlyCollection<IQuest> AvailableQuests => _decoratingTarget.AvailableQuests;
+        public ReadOnlyCollection<IQuest> AvailableQuests => decoratingTarget.AvailableQuests;
 
-        public ReadOnlyCollection<IQuest> ActiveQuests => _decoratingTarget.ActiveQuests;
+        public ReadOnlyCollection<IQuest> ActiveQuests => decoratingTarget.ActiveQuests;
 
-        public ReadOnlyCollection<IQuest> FinishedQuests => _decoratingTarget.FinishedQuests;
+        public ReadOnlyCollection<IQuest> FinishedQuests => decoratingTarget.FinishedQuests;
 
-        public ReadOnlyCollection<IQuest> FailedQuests => _decoratingTarget.FailedQuests;
+        public ReadOnlyCollection<IQuest> FailedQuests => decoratingTarget.FailedQuests;
 
         public void AddQuest(IQuest incomingQuest)
         {
@@ -29,14 +29,19 @@ namespace AbstractionLib.QuestSystem
             {
                 {"eventType", "newQuest"}
             };
-            _decoratingTarget.AddQuest(incomingQuest);
+            decoratingTarget.AddQuest(incomingQuest);
+        }
+
+        public void AddManyQuests(IEnumerable<IQuest> incomingQuests)
+        {
+            decoratingTarget.AddManyQuests(incomingQuests);
         }
 
         public void Reset()
         {
-            _decoratingTarget.Reset();
+            decoratingTarget.Reset();
         }
 
-        public IQuestRepository DecoratingTarget => _decoratingTarget;
+        public IQuestRepository DecoratingTarget => decoratingTarget;
     }
 }

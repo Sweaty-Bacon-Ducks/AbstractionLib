@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace AbstractionLib.QuestSystem
@@ -9,6 +10,7 @@ namespace AbstractionLib.QuestSystem
         ReadOnlyCollection<IQuest> FinishedQuests { get; }
         ReadOnlyCollection<IQuest> FailedQuests { get; }
         void AddQuest(IQuest incomingQuest);
+        void AddManyQuests(IEnumerable<IQuest> incomingQuests);
         void Reset();
     }
 }
