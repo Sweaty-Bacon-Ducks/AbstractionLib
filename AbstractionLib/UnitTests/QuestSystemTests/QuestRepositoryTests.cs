@@ -59,6 +59,50 @@ namespace AbstractionLib.Tests
         }
 
         [Test, Parallelizable(ParallelScope.Self)]
+        public void QuestStateChangeToFinishedTest()
+        {
+            var q = new Quest();
+            var repo = new ListBasedQuestRepository();
+            repo.AddQuest(q);
+            q.MakeFinished();
+
+            Assert.True(repo.FinishedQuests.Count == 1);
+        }
+
+        [Test, Parallelizable(ParallelScope.Self)]
+        public void QuestStateChangeToFailedTest()
+        {
+            var q = new Quest();
+            var repo = new ListBasedQuestRepository();
+            repo.AddQuest(q);
+            q.MakeFailed();
+
+            Assert.True(repo.FailedQuests.Count == 1);
+        }
+
+        [Test, Parallelizable(ParallelScope.Self)]
+        public void QuestStateChangeToActiveTest()
+        {
+            var q = new Quest();
+            var repo = new ListBasedQuestRepository();
+            repo.AddQuest(q);
+            q.MakeActive();
+
+            Assert.True(repo.ActiveQuests.Count == 1);
+        }
+
+        [Test, Parallelizable(ParallelScope.Self)]
+        public void QuestStateChangeToAvailableTest()
+        {
+            var q = new Quest();
+            var repo = new ListBasedQuestRepository();
+            repo.AddQuest(q);
+            q.MakeAvailable();
+
+            Assert.True(repo.AvailableQuests.Count == 1);
+        }
+
+        [Test, Parallelizable(ParallelScope.Self)]
         public void ClearQuestsTest()
         {
             var repo = new ListBasedQuestRepository();
