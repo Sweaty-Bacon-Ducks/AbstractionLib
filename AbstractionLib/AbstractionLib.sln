@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractionLib.Logging", "L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractionLib.Serialization", "Serialization\AbstractionLib.Serialization.csproj", "{D340D19C-8821-495A-9512-444B69DE8819}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractionLib.QuestSystem.Reactive", "AbstractionLib.QuestSystem.Reactive\AbstractionLib.QuestSystem.Reactive.csproj", "{18CC3F1F-2AA4-485A-94D3-68B2881F0C65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D340D19C-8821-495A-9512-444B69DE8819}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D340D19C-8821-495A-9512-444B69DE8819}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D340D19C-8821-495A-9512-444B69DE8819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18CC3F1F-2AA4-485A-94D3-68B2881F0C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18CC3F1F-2AA4-485A-94D3-68B2881F0C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18CC3F1F-2AA4-485A-94D3-68B2881F0C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18CC3F1F-2AA4-485A-94D3-68B2881F0C65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
