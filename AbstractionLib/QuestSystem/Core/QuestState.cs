@@ -1,8 +1,14 @@
-﻿namespace AbstractionLib.QuestSystem
+﻿using System;
+
+namespace AbstractionLib.QuestSystem
 {
+    [Flags]
     public enum QuestState
     {
-        Active = 0, Available,
-        Finished, Failed,
+        None = 0,
+        Active = 1 << 0,
+        Available = 1 << 1,
+        Finished = 1 << 2,
+        Failed = 1 << 3,
     }
 }
